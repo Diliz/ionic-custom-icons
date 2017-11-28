@@ -1,14 +1,25 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header [color]="color">
+    <ion-navbar [color]="color">
+        <ion-segment mode="ios" [(ngModel)]="color" [color]="color === 'light' ? 'primary' : 'light'">
+            <ion-segment-button value="primary">
+                primary
+            </ion-segment-button>
+            <ion-segment-button value="light">
+                light
+            </ion-segment-button>
+            <ion-segment-button value="secondary">
+                secondary
+            </ion-segment-button>
+        </ion-segment>
+    </ion-navbar>
+    <ion-toolbar [color]="color">
+        <ion-searchbar [(ngModel)]="search" (ionInput)="onInput($event)"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list>
+        <button ion-button icon-only [color]="color" *ngFor="let icon of iconsFiltered" (click)="alert(icon)">
+            <ion-icon [name]="icon"></ion-icon>
+        </button>
+    </ion-list>
 </ion-content>
